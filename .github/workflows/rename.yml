@@ -1,0 +1,23 @@
+name: Rename to index.html
+
+on: push
+
+permissions:
+  contents: write
+
+jobs:
+  rename:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rename file to index.html
+        run: |
+          if [ -f real-estate-website.html ] && [ ! -f index.html ]; then
+            git config user.name "Apram602"
+            git config user.email "Apram602@users.noreply.github.com"
+            git mv real-estate-website.html index.html
+            git commit -m "Rename real-estate-website.html to index.html"
+            git push
+          else
+            echo "Nothing to rename."
+          fi
